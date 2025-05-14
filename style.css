@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body, html {
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    background-color: #f0f0f0; /* Modo claro por padrão */
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color:#1e1e2f;
+    margin: 0 auto; /* Adiciona margem automática nas laterais para centralizar */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: white;
+    margin-top: 30px;
+}
+
+.filter-buttons .btn {
+    background-color: #2a2a3b;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.filter-buttons .btn.active {
+    background-color: #2f354b;
+    margin-top: 30px;
+}
+
+.filter-buttons .btn.inactive {
+    background-color: #2f354b;
+    margin-top: 30px;
+
+}
+
+.coupon-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cria 3 colunas de tamanho igual */
+    gap: 10px; /* Espaçamento entre os cupons */
+    justify-items: center; /* Centraliza os cupons nas colunas */
+}
+
+.coupon-card {
+    background-color: #2a2a3b;
+    border: 1px solid #3B3B54;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%; /* Cupons ocupando toda a largura da coluna */
+    max-width: 300px; /* Limita o tamanho máximo do cupom */
+    margin: 10px 0;
+}
+
+.coupon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.store-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.discount {
+    font-size: 16px;
+    background-color: #6d6df3;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.store-logo {
+    width: 40px; /* Largura da miniatura */
+    height: 40px; /* Altura da miniatura */
+    object-fit: contain; /* Garante que a imagem fique dentro do quadrado sem distorcer */
+    border-radius: 5px; /* Bordas arredondadas para o logo */
+    margin-left: 10px; /* Espaçamento à esquerda do logo */
+}
+
+.coupon-body p {
+    font-size: 14px;
+    margin: 10px 0;
+    color: white;
+}
+
+.copy-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: flex-start;
+    margin: 10px 0;
+}
+
+.copy-btn:hover {
+    background-color: #45a049;
+}
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse; 
+    align-items: center;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    max-width: 1200px;
+    width: 80%; /* A navbar vai ocupar 80% da largura da tela */
+    margin: 20px auto 0 auto;
+
+}
+
+.navbar .mode-toggle {
+    background-color: #555;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.navbar .mode-toggle:hover {
+    background-color: #777;
+}
+
+.navbar .logo {
+    height: 40px; /* Logo à direita */
+}
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+body.dark-mode .coupon-card {
+    background-color: #2a2a3b;
+}
+
+body.dark-mode .navbar {
+    background-color: #1e1e2f;
+}
+
+body.dark-mode .filter-buttons .btn {
+    background-color: #2a2a3b;
+}
+
+body.dark-mode .filter-buttons .btn.active {
+    background-color: #6d6df3;
+}
+
+body.dark-mode .filter-buttons .btn.inactive {
+    background-color: #ff7f7f;
+}

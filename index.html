@@ -1,1 +1,75 @@
 <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupons de Desconto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <button class="mode-toggle" onclick="toggleMode()">Modo Escuro</button> <!-- Botão à esquerda -->
+    <img src="logo.png" alt="Logo" class="logo"> <!-- Logo à direita -->
+</header>
+
+    <div class="container">
+        <header>
+            <h1>Cupons de Desconto</h1>
+            <div class="filter-buttons">
+                <button class="btn active">Ativos</button>
+                <button class="btn inactive">Inativos</button>
+            </div>
+        </header>
+
+        <div class="coupon-list">
+    <div class="coupon-card">
+        <div class="coupon-header">
+            <span class="store-name">Amazon</span>
+            <span class="discount">10% OFF</span>
+            <img src="amazon-logo.png" alt="Amazon Logo" class="store-logo"> <!-- Logo da Amazon -->
+        </div>
+        <div class="coupon-body">
+            <p>Desconto em compras acima de R$100</p>
+            <button class="copy-btn" onclick="copyCoupon('AMZ10')">Copiar</button>
+        </div>
+    </div>
+
+    <div class="coupon-card">
+        <div class="coupon-header">
+            <span class="store-name">eBay</span>
+            <span class="discount">5% OFF</span>
+        </div>
+        <div class="coupon-body">
+            <p>Desconto exclusivo para novos usuários</p>
+            <button class="copy-btn" onclick="copyCoupon('EBAY5')">Copiar</button>
+        </div>
+    </div>
+
+    <div class="coupon-card">
+        <div class="coupon-header">
+            <span class="store-name">AliExpress</span>
+            <span class="discount">15% OFF</span>
+        </div>
+        <div class="coupon-body">
+            <p>Desconto em compras internacionais</p>
+            <button class="copy-btn" onclick="copyCoupon('ALIX15')">Copiar</button>
+        </div>
+    </div>
+
+    <div class="coupon-card">
+        <div class="coupon-header">
+            <span class="store-name">Walmart</span>
+            <span class="discount">20% OFF</span>
+        </div>
+        <div class="coupon-body">
+            <p>Desconto em compras acima de R$200</p>
+            <button class="copy-btn" onclick="copyCoupon('WM20')">Copiar</button>
+        </div>
+    </div>
+
+    <!-- Repita para adicionar mais cupons -->
+</div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
