@@ -1,189 +1,525 @@
+/* ======================
+   RESET & ESTILOS BASE
+   ====================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
-body, html {
-    font-family: 'Arial', sans-serif;
+body,
+.container,
+.coupon-card,
+.navbar,
+header h1 {
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* ======================
+   CORPO & FUNDO
+   ====================== */
+body {
+    font-family: 'Inter', Arial, sans-serif;
     height: 100%;
-    background-color: #f0f0f0; /* Modo claro por padrão */
-    color: #333;
-    transition: background-color 0.3s, color 0.3s;
+    background: linear-gradient(120deg, #7fd8ff, #e6c6f7, #ffc3a1, #7fd8ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ======================
+   TIPOGRAFIA
+   ====================== */
+.gradient-text {
+    background: linear-gradient(120deg,#dc77d5 50%, #6d6df3 85%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+}
+
+/* ======================
+   CONTAINERS DE LAYOUT
+   ====================== */
+.container,
+.navbar {
+    max-width: 1200px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .container {
+    margin: 10px auto 40px;
     padding: 20px;
-    max-width: 1200px;
-    width: 80%;
     display: flex;
     flex-direction: column;
-    background-color:#1e1e2f;
-    margin: 0 auto; /* Adiciona margem automática nas laterais para centralizar */
+    background-color: rgba(255, 255, 255, 0.50);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
 }
 
+/* ======================
+   SEÇÃO DE CABEÇALHO
+   ====================== */
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    align-items: baseline;
+    margin: 10px 0;  
+    gap: 15px;
+    min-width: 0;
 }
 
 header h1 {
-    font-size: 24px;
-    color: white;
-    margin-top: 30px;
+    font-size: 30px;
+    color: black;
+    font-weight: 700;
+    flex-shrink: 1;
+    overflow: hidden;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.header-section {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* ======================
+   BOTÕES DE FILTRO
+   ====================== */
+.filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scrollbar-width: none;
+    min-width: fit-content;
+    flex-shrink: 0;
+    max-width: 60%;
+}
+
+.filter-buttons::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-buttons .btn {
-    background-color: #2a2a3b;
-    border: none;
-    color: #fff;
+    border: 1px solid #ffe0b2;
+    color: #2a2a3b;
     padding: 8px 16px;
-    margin-left: 10px;
     cursor: pointer;
     border-radius: 20px;
     font-size: 14px;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-weight: 500;
 }
 
-.filter-buttons .btn.active {
-    background-color: #2f354b;
-    margin-top: 30px;
+/* Variantes de botões */
+.filter-buttons .btn.all {
+    border: none;
+    background: rgba(255, 255, 255, 0.50); 
+    color: #6d6df3;
+}
+
+.filter-buttons .btn.all.active,
+.filter-buttons .btn.all:hover {
+    background: linear-gradient(120deg,#dc77d5 50%, #6d6df3 85%);
+    color: #fff;
+}
+
+.filter-buttons .btn.active-filter {
+    border: none;
+    background: rgba(255, 255, 255, 0.50);
+    color: #6d6df3;
+}
+
+.filter-buttons .btn.active-filter.active,
+.filter-buttons .btn.active-filter:hover {
+    background: linear-gradient(120deg, #dc77d5 50%, #6d6df3 85%);
+    color: #fff;
 }
 
 .filter-buttons .btn.inactive {
-    background-color: #2f354b;
-    margin-top: 30px;
-
+    background: rgba(255, 255, 255, 0.50);
+    border: none;
+    color: #ff7f7f;
 }
 
+.filter-buttons .btn.inactive.active,
+.filter-buttons .btn.inactive:hover {
+    background: linear-gradient(120deg, #ffd6e0 15%, #ffe0e0 85%);
+    color: #ff7f7f;
+}
+
+/* ======================
+   CARTÕES DE CUPOM
+   ====================== */
 .coupon-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cria 3 colunas de tamanho igual */
-    gap: 10px; /* Espaçamento entre os cupons */
-    justify-items: center; /* Centraliza os cupons nas colunas */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
 }
 
 .coupon-card {
-    background-color: #2a2a3b;
-    border: 1px solid #3B3B54;
+    background-color: white;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%; /* Cupons ocupando toda a largura da coluna */
-    max-width: 300px; /* Limita o tamanho máximo do cupom */
-    margin: 10px 0;
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coupon-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.coupon-card:hover .store-name,
+.coupon-card:hover .discount,
+.coupon-card:hover .copy-btn {
+    transition: opacity 0.2s ease 0.1s;
+    opacity: 0.95;
+}
+
+.coupon-card[data-status="inativo"] {
+    opacity: 0.6;
+    background: #f3f3f3;
+    pointer-events: none;
 }
 
 .coupon-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    min-height: 44px;
+    margin-bottom: 4px;
+    gap: 10px;
 }
 
 .store-name {
     font-size: 18px;
     font-weight: bold;
-    color: white;
+    color: #222;
+    margin: 10px 0 5px 2px;
+    word-break: break-word;
 }
 
 .discount {
-    font-size: 16px;
-    background-color: #6d6df3;
+    font-size: clamp(12px, 3vw, 16px);
+    font-weight: 700;
+    background: linear-gradient(120deg, #ff8b6a 15%,#dc77d5 50%, #6d6df3 85%);
     color: #fff;
-    padding: 5px 10px;
-    border-radius: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    margin-left: 10px;
+    min-width: 70px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .store-logo {
-    width: 40px; /* Largura da miniatura */
-    height: 40px; /* Altura da miniatura */
-    object-fit: contain; /* Garante que a imagem fique dentro do quadrado sem distorcer */
-    border-radius: 5px; /* Bordas arredondadas para o logo */
-    margin-left: 10px; /* Espaçamento à esquerda do logo */
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.coupon-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
 .coupon-body p {
     font-size: 14px;
-    margin: 10px 0;
-    color: white;
+    margin: 0px 0 18px 0;
+    color: rgba(0,0,0,0.5);
 }
 
 .copy-btn {
-    background-color: #4CAF50;
+    background-color: #9191F3;
     color: white;
     border: none;
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 12px 20px;
+    font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 30px;
     align-self: flex-start;
-    margin: 10px 0;
+    margin: 30px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copy-btn i {
+    margin-left: 8px;
+    font-size: 14px;
 }
 
 .copy-btn:hover {
-    background-color: #45a049;
+    background: linear-gradient(120deg,#dc77d5 50%, #6d6df3 85%);
 }
-/* Navbar Styles */
+
+/* ======================
+   BARRA DE NAVEGAÇÃO
+   ====================== */
 .navbar {
     display: flex;
     justify-content: space-between;
-    flex-direction: row-reverse; 
     align-items: center;
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.60);
     border-radius: 5px;
     padding: 10px 20px;
-    color: white;
-    max-width: 1200px;
-    width: 80%; /* A navbar vai ocupar 80% da largura da tela */
-    margin: 20px auto 0 auto;
-
-}
-
-.navbar .mode-toggle {
-    background-color: #555;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.navbar .mode-toggle:hover {
-    background-color: #777;
+    margin-top: 20px;
 }
 
 .navbar .logo {
-    height: 40px; /* Logo à direita */
+    height: 40px;
+    max-width: 120px;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+    display: block;
 }
-/* Dark Mode */
+
+.logo-light {
+    display: block !important;
+}
+
+.logo-dark {
+    display: none !important;
+}
+
+/* ======================
+   BOTÃO DE MODO ESCURO
+   ====================== */
+.mode-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffff;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.mode-toggle::before {
+    content: "☀️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.mode-toggle:hover {
+    background: #ffffff;
+    transform: scale(1.05);
+}
+
+.mode-toggle:hover::before {
+    animation: rotate-icon 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes rotate-icon {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ======================
+   ESTILOS DE MODO ESCURO
+   ====================== */
 body.dark-mode {
-    background-color: #121212;
-    color: #f0f0f0;
+    background: #141414;
+    color: #fff;
+}
+
+body.dark-mode .mode-toggle {
+    background: #222;
+    border: 1px solid #333;
+}
+
+body.dark-mode .mode-toggle:hover {
+    background: #333;
+}
+
+body.dark-mode .mode-toggle::before {
+    content: "🌙";
+}
+
+body.dark-mode .container {
+    background-color: #191919;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
 
 body.dark-mode .coupon-card {
-    background-color: #2a2a3b;
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+body.dark-mode header h1,
+body.dark-mode .store-name {
+    color: #fff;
+}
+
+body.dark-mode .coupon-body p {
+    color: rgba(255,255,255,0.5);
+}
+
+body.dark-mode .copy-btn {
+    border: 1px solid #1F1F1F;
+    color: #fff;
+    background: transparent;
+}
+
+body.dark-mode .copy-btn:hover {
+    background: linear-gradient(120deg, #ff8b6a 15%, #dc77d5 50%, #6d6df3 85%);
 }
 
 body.dark-mode .navbar {
-    background-color: #1e1e2f;
+    background-color: #0A0A0A;
 }
 
+body.dark-mode .logo-light {
+    display: none !important;
+}
+
+body.dark-mode .logo-dark {
+    display: block !important;
+}
+
+/* Botões de filtro no modo escuro */
 body.dark-mode .filter-buttons .btn {
-    background-color: #2a2a3b;
+    background-color: #333333;
+    color: #fff;
+    border: 1px solid #3D3D3D;
 }
 
-body.dark-mode .filter-buttons .btn.active {
-    background-color: #6d6df3;
+body.dark-mode .filter-buttons .btn.all,
+body.dark-mode .filter-buttons .btn.active-filter {
+    background: #191919;
+    border: 1px solid #6d6df3;
+}
+
+body.dark-mode .filter-buttons .btn.all.active,
+body.dark-mode .filter-buttons .btn.all:hover,
+body.dark-mode .filter-buttons .btn.active-filter.active,
+body.dark-mode .filter-buttons .btn.active-filter:hover {
+    background: linear-gradient(120deg,#dc77d5 50%, #6d6df3 85%);
+    color: #fff;
+    border: none;
 }
 
 body.dark-mode .filter-buttons .btn.inactive {
-    background-color: #ff7f7f;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #3D3D3D;
+}
+
+body.dark-mode .filter-buttons .btn.inactive.active,
+body.dark-mode .filter-buttons .btn.inactive:hover {
+    color: #fff;
+    border: 1px solid #ff7f7f;
+}
+
+/* ======================
+   DESIGN RESPONSIVO
+   ====================== */
+@media (max-width: 1200px) {
+    .coupon-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .coupon-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .coupon-card {
+        padding: 12px;
+    }
+    
+    .discount {
+        font-size: 15px;
+        padding: 6px 10px;
+        max-width: 35%;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    .filter-buttons {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        gap: 6px;
+    }
+
+    .filter-buttons .btn {
+        flex: 1 1 calc(50% - 3px);
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .coupon-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .coupon-card {
+        padding: 10px;
+    }
+
+    .store-name {
+        font-size: 16px;
+    }
+
+    .discount {
+        font-size: 14px;
+        padding: 5px 8px;
+        max-width: 30%;
+    }
 }

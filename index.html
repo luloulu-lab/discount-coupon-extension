@@ -5,71 +5,291 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cupons de Desconto</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/css/phosphor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <header class="navbar">
-    <button class="mode-toggle" onclick="toggleMode()">Modo Escuro</button> <!-- Botão à esquerda -->
-    <img src="logo.png" alt="Logo" class="logo"> <!-- Logo à direita -->
-</header>
 
-    <div class="container">
-        <header>
-            <h1>Cupons de Desconto</h1>
-            <div class="filter-buttons">
-                <button class="btn active">Ativos</button>
-                <button class="btn inactive">Inativos</button>
-            </div>
-        </header>
-
-        <div class="coupon-list">
-    <div class="coupon-card">
-        <div class="coupon-header">
-            <span class="store-name">Amazon</span>
-            <span class="discount">10% OFF</span>
-            <img src="amazon-logo.png" alt="Amazon Logo" class="store-logo"> <!-- Logo da Amazon -->
-        </div>
-        <div class="coupon-body">
-            <p>Desconto em compras acima de R$100</p>
-            <button class="copy-btn" onclick="copyCoupon('AMZ10')">Copiar</button>
-        </div>
-    </div>
-
-    <div class="coupon-card">
-        <div class="coupon-header">
-            <span class="store-name">eBay</span>
-            <span class="discount">5% OFF</span>
-        </div>
-        <div class="coupon-body">
-            <p>Desconto exclusivo para novos usuários</p>
-            <button class="copy-btn" onclick="copyCoupon('EBAY5')">Copiar</button>
-        </div>
-    </div>
-
-    <div class="coupon-card">
-        <div class="coupon-header">
-            <span class="store-name">AliExpress</span>
-            <span class="discount">15% OFF</span>
-        </div>
-        <div class="coupon-body">
-            <p>Desconto em compras internacionais</p>
-            <button class="copy-btn" onclick="copyCoupon('ALIX15')">Copiar</button>
-        </div>
-    </div>
-
-    <div class="coupon-card">
-        <div class="coupon-header">
-            <span class="store-name">Walmart</span>
-            <span class="discount">20% OFF</span>
-        </div>
-        <div class="coupon-body">
-            <p>Desconto em compras acima de R$200</p>
-            <button class="copy-btn" onclick="copyCoupon('WM20')">Copiar</button>
-        </div>
-    </div>
-
-    <!-- Repita para adicionar mais cupons -->
+<div class="navbar">
+<img src="resources/logo normal.png" class="logo logo-light" alt="Logo Claro">
+<img src="resources/logo branco.png" class="logo logo-dark" alt="Logo Escuro">
+    <button class="mode-toggle" aria-label="Toggle dark mode"></button>
 </div>
 
-    <script src="popup.js"></script>
+<div class="container">
+    <header>
+        <h1>Cupons de <span class="gradient-text">Desconto</span></h1>
+        <div class="filter-buttons">
+            <button class="btn all" data-filter="all">Todos</button>
+            <button class="btn active-filter active" data-filter="ativo">Ativos</button>
+            <button class="btn inactive" data-filter="inativo">Inativos</button>
+        </div>
+    </header>
+
+   <div class="coupon-list">
+    <!-- Americanas -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzStkloUNzw6SoglgSQn03ECQ8aPrpfmAEqw&s" alt="Logo Americanas" class="store-logo">
+            <span class="discount">15% OFF</span>
+        </div>
+        <div class="store-name">Americanas</div>
+        <div class="coupon-body">
+            <p>Desconto em eletrônicos acima de R$200</p>
+            <button class="copy-btn" onclick="copiarCupom('AME15', this)" aria-label="Copiar código AME15">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Magazine Luiza -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://assets.hgbrasil.com/finance/companies/big/magaz-luiza.png" alt="Logo Magazine Luiza" class="store-logo">
+            <span class="discount">10% OFF</span>
+        </div>
+        <div class="store-name">Magazine Luiza</div>
+        <div class="coupon-body">
+            <p>Desconto em móveis selecionados</p>
+            <button class="copy-btn" onclick="copiarCupom('MAGALU10', this)" aria-label="Copiar código MAGALU10">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mercado Livre -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://play-lh.googleusercontent.com/2uEptSnLOcFWnSjxLLIfGOWrf6lWSQ8pheDbGdzhqn0dcV93PBSrUkyjAKPgY7ejmA" alt="Logo Mercado Livre" class="store-logo">
+            <span class="discount">20% OFF</span>
+        </div>
+        <div class="store-name">Mercado Livre</div>
+        <div class="coupon-body">
+            <p>Frete grátis para todo Brasil</p>
+            <button class="copy-btn" onclick="copiarCupom('ML20', this)" aria-label="Copiar código ML20">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Netshoes -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgPDCLv5xxNVFGPMi-9yJ7Y6uEiMXTwsK9sg&s" alt="Logo Netshoes" class="store-logo">
+            <span class="discount">12% OFF</span>
+        </div>
+        <div class="store-name">Netshoes</div>
+        <div class="coupon-body">
+            <p>Desconto em artigos esportivos</p>
+            <button class="copy-btn" onclick="copiarCupom('NET12', this)" aria-label="Copiar código NET12">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Submarino -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://pbs.twimg.com/profile_images/1742543620547182592/X40_NE6Z_400x400.png" alt="Logo Submarino" class="store-logo">
+            <span class="discount">18% OFF</span>
+        </div>
+        <div class="store-name">Submarino</div>
+        <div class="coupon-body">
+            <p>Livros com desconto especial</p>
+            <button class="copy-btn" onclick="copiarCupom('SUB18', this)" aria-label="Copiar código SUB18">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Centauro -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://play-lh.googleusercontent.com/aQ6XYMxngjVdGkuCkzhGOePYEV-q61auHfGCZwO2JAkSJDsblGafUTu3mL0DkFsW7TE" alt="Logo Centauro" class="store-logo">
+            <span class="discount">10% OFF</span>
+        </div>
+        <div class="store-name">Centauro</div>
+        <div class="coupon-body">
+            <p>Desconto em tênis esportivos</p>
+            <button class="copy-btn" onclick="copiarCupom('CENTAURO10', this)" aria-label="Copiar código CENTAURO10">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Renner -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://assets.hgbrasil.com/finance/companies/big/lojas-renner.png" alt="Logo Renner" class="store-logo">
+            <span class="discount">15% OFF</span>
+        </div>
+        <div class="store-name">Renner</div>
+        <div class="coupon-body">
+            <p>Moda feminina e masculina</p>
+            <button class="copy-btn" onclick="copiarCupom('RENNER15', this)" aria-label="Copiar código RENNER15">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Extra -->
+    <div class="coupon-card" data-status="ativo">
+        <div class="coupon-header">
+            <img src="https://pbs.twimg.com/profile_images/1549832850727370754/3vC6DOHl_400x400.png" alt="Logo Extra" class="store-logo">
+            <span class="discount">8% OFF</span>
+        </div>
+        <div class="store-name">Extra</div>
+        <div class="coupon-body">
+            <p>Desconto em eletrodomésticos</p>
+            <button class="copy-btn" onclick="copiarCupom('EXTRA8', this)" aria-label="Copiar código EXTRA8">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Lista de Cupons - Inativos -->
+    
+    <!-- Ponto Frio -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/3844b7131761941.619bcd7b27855.gif" alt="Logo Ponto Frio" class="store-logo">
+            <span class="discount">10% OFF</span>
+        </div>
+        <div class="store-name">Ponto Frio</div>
+        <div class="coupon-body">
+            <p>Desconto em eletroportáteis</p>
+            <button class="copy-btn" onclick="copiarCupom('PONTO10', this)" aria-label="Copiar código PONTO10">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Casas Bahia -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://yt3.googleusercontent.com/VxczX2IymzQDdmGURDtNH0YMUQqlC4ps0PNq1AvbpGqnSrds4FpJ7s5XiA6KFhoX031B7_-lHg=s900-c-k-c0x00ffffff-no-rj" alt="Logo Casas Bahia" class="store-logo">
+            <span class="discount">12% OFF</span>
+        </div>
+        <div class="store-name">Casas Bahia</div>
+        <div class="coupon-body">
+            <p>Desconto em móveis e decoração</p>
+            <button class="copy-btn" onclick="copiarCupom('BAHIA12', this)" aria-label="Copiar código BAHIA12">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Fast Shop -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk4OdvVM8-VGCobE8rfE8QK0cg1xZLz-hZBA&s" alt="Logo Fast Shop" class="store-logo">
+            <span class="discount">7% OFF</span>
+        </div>
+        <div class="store-name">Fast Shop</div>
+        <div class="coupon-body">
+            <p>Desconto em eletrônicos</p>
+            <button class="copy-btn" onclick="copiarCupom('FAST7', this)" aria-label="Copiar código FAST7">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Ri Happy -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://ugc.production.linktr.ee/M66arlpyTlW31UB9FX0X_4aThcwnNp8lSI74h" alt="Logo Ri Happy" class="store-logo">
+            <span class="discount">10% OFF</span>
+        </div>
+        <div class="store-name">Ri Happy</div>
+        <div class="coupon-body">
+            <p>Brinquedos com desconto</p>
+            <button class="copy-btn" onclick="copiarCupom('RIHAPPY10', this)" aria-label="Copiar código RIHAPPY10">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Drogasil -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOQpIs1Lxg4Q1ElD-LjlKQXuPvDUErdoPN7g&s" alt="Logo Drogasil" class="store-logo">
+            <span class="discount">5% OFF</span>
+        </div>
+        <div class="store-name">Drogasil</div>
+        <div class="coupon-body">
+            <p>Medicamentos selecionados</p>
+            <button class="copy-btn" onclick="copiarCupom('DROGASIL5', this)" aria-label="Copiar código DROGASIL5">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Kalunga -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://play-lh.googleusercontent.com/KYt5Mlk8e7xxrg2jFbx62mkuCPc9QfdwL6DDV7Zs2Y30QhlXzfdm_67pi9PKsuLt4QE=w600-h300-pc0xffffff-pd" alt="Logo Kalunga" class="store-logo">
+            <span class="discount">8% OFF</span>
+        </div>
+        <div class="store-name">Kalunga</div>
+        <div class="coupon-body">
+            <p>Papelaria e escritório</p>
+            <button class="copy-btn" onclick="copiarCupom('KALUNGA8', this)" aria-label="Copiar código KALUNGA8">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- C&A -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://media.licdn.com/dms/image/v2/D560BAQEWtVgdoCSGCg/company-logo_200_200/B56Zag7tnLGkAo-/0/1746456730650/ca_brasil_logo?e=2147483647&v=beta&t=dIg5Damc6c02MmOz2ZdlrOZn6Pi9onb-G65NTuLlYy0" alt="Logo C&A" class="store-logo">
+            <span class="discount">9% OFF</span>
+        </div>
+        <div class="store-name">C&A</div>
+        <div class="coupon-body">
+            <p>Moda para toda família</p>
+            <button class="copy-btn" onclick="copiarCupom('CEA9', this)" aria-label="Copiar código CEA9">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Kanui -->
+    <div class="coupon-card" data-status="inativo">
+        <div class="coupon-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdw9f4QjV9qSJnZhDP8wem5y7M2xbHrXeqnw&s" alt="Logo Kanui" class="store-logo">
+            <span class="discount">11% OFF</span>
+        </div>
+        <div class="store-name">Kanui</div>
+        <div class="coupon-body">
+            <p>Desconto em moda esportiva</p>
+            <button class="copy-btn" onclick="copiarCupom('KANUI11', this)" aria-label="Copiar código KANUI11">
+                <span>Copiar</span>
+                <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
